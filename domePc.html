@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
+      <style media="screen">
+        #canvas{width: 300px;height: 300px;}
+      </style>
+    </head>
+    <body>
+      <div class="canvas" id="canvas" >
+        <canvas id="myCanvas" width="300" height="300"></canvas>
+      </div>
+    </body>
+  <script >
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    ctx.fillStyle="#ccc";
+    ctx.fillRect(0,0,300,300);
+    ctx.fillStyle="#F6F4F0";
+    ctx.fillRect(10,10,280,280);
+    //  绘制直线
+    ctx.moveTo(10,10);
+    ctx.lineTo(10,290);
+    ctx.lineTo(290,290);
+    ctx.lineTo(290,10);
+    ctx.lineTo(10,10);
+    ctx.stroke();
+    // 绘制虚线
+    ctx.setLineDash([15,5]);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#ccc';
+    ctx.beginPath();
+    ctx.moveTo(10, 10);
+    ctx.lineTo(290, 290);
+    ctx.stroke();
+
+    ctx.setLineDash([15,5]);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#ccc';
+    ctx.beginPath();
+    ctx.moveTo(10, 150);
+    ctx.lineTo(290, 150);
+    ctx.stroke();
+
+    ctx.setLineDash([15,5]);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#ccc';
+    ctx.beginPath();
+    ctx.moveTo(150, 10);
+    ctx.lineTo(150, 290);
+    ctx.stroke();
+
+    ctx.setLineDash([15,5]);
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#ccc';
+    ctx.beginPath();
+    ctx.moveTo(290, 10);
+    ctx.lineTo(10, 290);
+    ctx.stroke();
+
+    var canvas = document.getElementById('canvas')
+    canvas.addEventListener("mousedown",doMouseDown,false);
+    canvas.addEventListener("mouseup",doMouseUp,false);
+
+    function doMouseDown (){
+      canvas.addEventListener("mousemove",doMouseMove,false);
+    }
+    function doMouseMove (ev){
+      console.log('move');
+      ev = ev || window.event;
+      x = ev.pageX;
+      y = ev.pageY;
+      circle (x, y)
+    }
+    function doMouseUp (){
+      canvas.removeEventListener("mousemove",doMouseMove,false);
+    }
+
+    function circle (x, y) {
+      ctx.beginPath();
+      ctx.arc(x,y,10,0,2*Math.PI,true);
+      ctx.fillStyle="#333";
+      ctx.closePath();
+      ctx.fill();
+    }
+
+  </script>
