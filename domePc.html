@@ -5,61 +5,71 @@
       <title>Title</title>
       <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
       <style media="screen">
-        #canvas{width: 300px;height: 300px;}
+        #canvas{width: 360px;height: 360px;}
       </style>
     </head>
     <body>
       <div class="canvas" id="canvas" >
-        <canvas id="myCanvas" width="300" height="300"></canvas>
+        <canvas id="myCanvas" width="360" height="360"></canvas>
+        <input type="submit" name="" id="submit1" value="擦除">
       </div>
     </body>
   <script >
     var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");
-    ctx.fillStyle="#ccc";
-    ctx.fillRect(0,0,300,300);
-    ctx.fillStyle="#F6F4F0";
-    ctx.fillRect(10,10,280,280);
-    //  绘制直线
-    ctx.moveTo(10,10);
-    ctx.lineTo(10,290);
-    ctx.lineTo(290,290);
-    ctx.lineTo(290,10);
-    ctx.lineTo(10,10);
-    ctx.stroke();
-    // 绘制虚线
-    ctx.setLineDash([15,5]);
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#ccc';
-    ctx.beginPath();
-    ctx.moveTo(10, 10);
-    ctx.lineTo(290, 290);
-    ctx.stroke();
 
-    ctx.setLineDash([15,5]);
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#ccc';
-    ctx.beginPath();
-    ctx.moveTo(10, 150);
-    ctx.lineTo(290, 150);
-    ctx.stroke();
+    function ctxFun (){
+      ctx.fillStyle="#ccc";
+      ctx.fillRect(0,0,300,300);
+      ctx.fillStyle="#F6F4F0";
+      ctx.fillRect(10,10,280,280);
 
-    ctx.setLineDash([15,5]);
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#ccc';
-    ctx.beginPath();
-    ctx.moveTo(150, 10);
-    ctx.lineTo(150, 290);
-    ctx.stroke();
+      // 绘制虚线
+      ctx.setLineDash([15,5]);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ccc';
+      ctx.beginPath();
+      ctx.moveTo(10, 10);
+      ctx.lineTo(290, 290);
+      ctx.stroke();
 
-    ctx.setLineDash([15,5]);
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = '#ccc';
-    ctx.beginPath();
-    ctx.moveTo(290, 10);
-    ctx.lineTo(10, 290);
-    ctx.stroke();
+      ctx.setLineDash([15,5]);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ccc';
+      ctx.beginPath();
+      ctx.moveTo(10, 150);
+      ctx.lineTo(290, 150);
+      ctx.stroke();
 
+      ctx.setLineDash([15,5]);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ccc';
+      ctx.beginPath();
+      ctx.moveTo(150, 10);
+      ctx.lineTo(150, 290);
+      ctx.stroke();
+
+      ctx.setLineDash([15,5]);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ccc';
+      ctx.beginPath();
+      ctx.moveTo(290, 10);
+      ctx.lineTo(10, 290);
+      ctx.closePath();
+      ctx.stroke();
+
+      //  绘制直线
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(10,10);
+      ctx.strokeStyle = '#000';
+      ctx.lineTo(10,290);
+      ctx.lineTo(290,290);
+      ctx.lineTo(290,10);
+      ctx.lineTo(10,10);
+      ctx.stroke();
+    }
+    ctxFun()
     var canvas = document.getElementById('canvas')
     canvas.addEventListener("mousedown",doMouseDown,false);
     canvas.addEventListener("mouseup",doMouseUp,false);
@@ -86,4 +96,9 @@
       ctx.fill();
     }
 
+    var submit1 = document.getElementById('submit1')
+    submit1.addEventListener('click', submit1Fun, false)
+    function submit1Fun () {
+      ctxFun()
+    }
   </script>
